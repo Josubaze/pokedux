@@ -3,7 +3,7 @@ import { Card } from 'antd';
 import { StarOutlined } from '@ant-design/icons';
 
 const { Meta } = Card;
-const PokemonCard = () => {
+const PokemonCard = ({ name , url }) => {
     return (
         <Card 
             cover={
@@ -17,7 +17,7 @@ const PokemonCard = () => {
             ]}
         >
             <Meta
-                title="Card title"
+                title={name}
                 description="Fire and Magic"
             >
 
