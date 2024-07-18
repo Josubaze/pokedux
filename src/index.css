@@ -1,4 +1,5 @@
 body{
+    background-color: rgb(53, 85, 133);
     margin:0;
     font-family:-apple-system,BlinkMacSystemFont,segoe ui,roboto,oxygen,ubuntu,cantarell,fira sans,droid sans,helvetica neue,sans-serif;
     -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}code{font-family:source-code-pro,Menlo,Monaco,Consolas,courier new,monospace
