@@ -3,22 +3,33 @@ import { Card } from 'antd';
 import { StarOutlined } from '@ant-design/icons';
 
 const { Meta } = Card;
-const PokemonCard = ({ name , url }) => {
+const PokemonCard = ({ name , imageUrl, abilities }) => {
     return (
         <Card 
             cover={
                 <img 
-                    alt="example"
-                    src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+                    alt={name}
+                    src={imageUrl}
+                    style={
+                        {   
+                            margin: 0,
+                        }
+                    }
                 />
+                
             }
             actions={[
-                <StarOutlined key="favorite" />,
+                <StarOutlined key="favorite" style={
+                    {   
+                        fontSize: 24,
+                    }
+                }/>,
             ]}
         >
             <Meta
                 title={name}
-                description="Fire and Magic"
+                description={abilities}
+                
             >
 
             </Meta>
