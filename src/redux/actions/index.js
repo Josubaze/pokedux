@@ -11,3 +11,10 @@ export const getPokemonsWithDetails = (pokemons = [])=> async (dispatch)=> {
     const pokemonsDetailed = await Promise.all(pokemons.map(pokemon => getPokemonDetails(pokemon)))
     dispatch(setPokemons(pokemonsDetailed))
 }
+
+export const setLoading = (payload) => {
+    return {
+        type: 'SET_LOADING',
+        payload
+    }
+}
