@@ -1,38 +1,50 @@
+import { fromJS } from "immutable";
 import { SET_POKEMONS } from "../actions/types";
 
-const initialState = {
+const initialState = fromJS({
     pokemons: [],
     loading: false,
-}
+})
 
 export const pokemonsReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_POKEMONS:
-            return {
-                ...state,
-                pokemons: action.payload,
-            };
+            // return {
+            //     ...state,
+            //     pokemons: action.payload,
+            // };
+            return state.setIn(['pokemons'], fromJS(action.payload));
         case 'SET_LOADING':
-            return {
-                ...state,
-                loading: action.payload,
-            };
+            // return {
+            //     ...state,
+            //     loading: action.payload,
+            // };
+            return state.setIn(['loading'], fromJS(action.payload));
         case 'SET_FAVORITE':
-            const newPokemonList = [...state.pokemons];
-            const currentPokemonIndex = newPokemonList.findIndex(
-                (pokemon) => {
-                    return pokemon.id === action.payload.pokemonId;
-                }
+            //const newPokemonList = [...state.pokemons]; // immutable asegura la inmutabilidad por lo que no hace falta una copia
+            // const currentPokemonIndex = newPokemonList.findIndex(
+            //     (pokemon) => {
+            //         return pokemon.id === action.payload.pokemonId;
+            //     }
+            // )
+            const currentPokemonIndex = state.get('pokemons').findIndex( // se usa un metodo de immutable llamado get y su propio findId
+                    (pokemon) => {
+                        return pokemon.get('id') === action.payload.pokemonId; // no se trabaja con notacion punto sino que tiene el metodo get ya menciando
+                    }
             )
-            if (currentPokemonIndex < 0) {
+
+            if (currentPokemonIndex < 0) { // se mantiene validación
                 return state;
             }
-            newPokemonList[currentPokemonIndex].favorite = !newPokemonList[currentPokemonIndex].favorite;
+
+            // const isFavorited = state.get('pokemons').get(currentPokemonIndex).get('favorite'); // esto se puede hacer tambien con getIn
+            const isFavorite = state.getIn([
+                'pokemons',
+                currentPokemonIndex,
+                'favorite',
+            ]);
             
-            return {
-                ...state,
-                pokemons: newPokemonList,
-            };
+            return state.setIn(['pokemons', currentPokemonIndex, 'favorite'], !isFavorite); 
         default:
             return state;
     }
