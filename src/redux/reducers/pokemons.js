@@ -1,9 +1,8 @@
 import { fromJS } from "immutable";
-import { SET_POKEMONS } from "../actions/types";
+import { SET_FAVORITE, SET_POKEMONS } from "../actions/types";
 
 const initialState = fromJS({
     pokemons: [],
-    loading: false,
 })
 
 export const pokemonsReducer = (state = initialState, action) => {
@@ -14,13 +13,7 @@ export const pokemonsReducer = (state = initialState, action) => {
             //     pokemons: action.payload,
             // };
             return state.setIn(['pokemons'], fromJS(action.payload));
-        case 'SET_LOADING':
-            // return {
-            //     ...state,
-            //     loading: action.payload,
-            // };
-            return state.setIn(['loading'], fromJS(action.payload));
-        case 'SET_FAVORITE':
+        case SET_FAVORITE:
             //const newPokemonList = [...state.pokemons]; // immutable asegura la inmutabilidad por lo que no hace falta una copia
             // const currentPokemonIndex = newPokemonList.findIndex(
             //     (pokemon) => {

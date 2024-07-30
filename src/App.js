@@ -6,11 +6,11 @@ import logo  from './assets/svg/logo.svg';
 import { useEffect } from 'react';
 import { getPokemons } from './api';
 import { getPokemonsWithDetails, setLoading } from './redux/actions';
-import { useDispatch, useSelector } from 'react-redux';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 
 function App(){
-    const pokemons = useSelector( state => state.get('pokemons')).toJS();
-    const loading = useSelector( state => state.get('loading'));
+    const pokemons = useSelector( state => state.getIn(['data', 'pokemons'], shallowEqual)).toJS(); // el shallowEqual hace comparcion superficial que para este caso que son todos mejora el performance asi evitamos rerenders innecesarios.
+    const loading = useSelector( state => state.getIn(['ui', 'loading'])); // no hace falta shallowEqual ya que solo es una propiedad
     const dispatch = useDispatch();
     useEffect(() => {
         const fetchPokemons = async () => {
