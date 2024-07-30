@@ -1,10 +1,8 @@
-import { combineReducers } from 'redux-immutable'; // se usa una libreria por el immutable, de no ser asi se usa la de redux normal
-import { pokemonsReducer } from './pokemons';
-import { uiReducer } from './ui';
+import { combineReducers } from 'redux'; 
+import dataSlice from '../../slices/dataSlice';
 
 const rootReducer = combineReducers({
-    data: pokemonsReducer,
-    iu: uiReducer
+    data: dataSlice,
 });
 
 export default rootReducer;
