@@ -28,7 +28,7 @@ const PokemonCard = ({ name , imageUrl, types, id, favorite }) => {
             actions={[
                 <StarButton isFavorite={favorite} onClick={handleOnFavorite}/>,
             ]}
-            style={{ backgroundColor:'#EBEDEF  '}}
+            style={{ backgroundColor:'#fff  '}}
         >
             <Meta
                 title={name}

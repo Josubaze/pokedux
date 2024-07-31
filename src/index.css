@@ -1,5 +1,7 @@
 body{
-    background-color: rgb(53, 85, 133);
+    
+    background: -webkit-linear-gradient(90deg, #5c83ba,#c4d2ec,#f2f1ed);
+    background: linear-gradient(90deg, #5c83ba,#c4d2ec,#f2f1ed);
     margin:0;
     font-family:-apple-system,BlinkMacSystemFont,segoe ui,roboto,oxygen,ubuntu,cantarell,fira sans,droid sans,helvetica neue,sans-serif;
     -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}code{font-family:source-code-pro,Menlo,Monaco,Consolas,courier new,monospace
