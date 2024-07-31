@@ -4,24 +4,20 @@ import './App.css';
 import { PokemonList } from './components/PokemonList';
 import logo  from './assets/svg/logo.svg';
 import { useEffect } from 'react';
-import { getPokemons } from './api';
-import { getPokemonsWithDetails, setLoading } from './redux/actions';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
+import { fetchPokemonsWithDetails } from './slices/dataSlice';
 
 function App(){
-    const pokemons = useSelector( state => state.getIn(['data', 'pokemons'], shallowEqual)).toJS(); // el shallowEqual hace comparcion superficial que para este caso que son todos mejora el performance asi evitamos rerenders innecesarios.
-    const loading = useSelector( state => state.getIn(['ui', 'loading'])); // no hace falta shallowEqual ya que solo es una propiedad
+    const pokemons = useSelector( state => 
+        state.data.pokemons, shallowEqual)
+        //state.getIn(['data', 'pokemons'], shallowEqual)).toJS(); // el shallowEqual hace comparcion superficial que para este caso que son todos mejora el performance asi evitamos rerenders innecesarios.
+    const loading = useSelector( state => 
+        state.ui.loading);
+        //state.getIn(['ui', 'loading'])); // no hace falta shallowEqual ya que solo es una propiedad
+    
     const dispatch = useDispatch();
     useEffect(() => {
-        const fetchPokemons = async () => {
-            dispatch( setLoading(true));
-            const pokemonsRes = await getPokemons();
-            dispatch(getPokemonsWithDetails(pokemonsRes));
-            setTimeout(function() {
-                dispatch( setLoading(false));
-            }, 500); 
-        } 
-        fetchPokemons();
+        dispatch(fetchPokemonsWithDetails());
     },[])
     return(
         <div className='App'>  

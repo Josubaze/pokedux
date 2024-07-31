@@ -2,7 +2,7 @@ import React from 'react';
 import { Card } from 'antd';
 import { StarButton } from '../StarButton';
 import { useDispatch } from 'react-redux';
-import { setFavorite } from '../../redux/actions';
+import { setFavorite } from '../../slices/dataSlice';
 
 const { Meta } = Card;
 const PokemonCard = ({ name , imageUrl, types, id, favorite }) => {
@@ -33,9 +33,7 @@ const PokemonCard = ({ name , imageUrl, types, id, favorite }) => {
             <Meta
                 title={name}
                 description={typeString}
-                
             >
-
             </Meta>
         </Card>
     );
